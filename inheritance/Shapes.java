@@ -12,6 +12,7 @@ public class Shapes {
     void draw(){
       System.out.println("Drawing a "  + shapeName().toLowerCase());
     }
+
   }
   class Circle extends Shape{
     String shapeName(){
@@ -34,5 +35,8 @@ public class Shapes {
     Rectangle rec = shapes.new Rectangle();
     System.out.println(rec.shapeName());
     rec.draw();
+    System.out.println( Character.valueOf('0').getClass().getSimpleName());
+    
     }
-}
+    
+  }

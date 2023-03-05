@@ -1,4 +1,4 @@
-package main.java.com.example.inheritance;
+package main.java.com.example.abstracts;
 public class Abstraction{
   
   abstract class Employee {
@@ -20,5 +20,7 @@ public class Abstraction{
     }
     
   }
-  
+  public static void main(String[] args) {
+    
+  }
 }
