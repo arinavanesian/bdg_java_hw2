@@ -11,7 +11,7 @@ package main.java.com.example.abstracts;
      
     }
   }
-
+  
   class A extends Marks{
     int subject1, subject2, subject3, subject4;
     public A(int subject1, int subject2, int subject3){
@@ -68,7 +68,7 @@ return avgPercent;
       }
     }
     public int getPercentage(){
-      int avgPercent = (this.subject1 + this.subject2 + this.subject3)/ 3;
+      int avgPercent = (this.subject1 + this.subject2 + this.subject3 + this.subject4)/4;
       return avgPercent;
     }
   }

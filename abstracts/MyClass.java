@@ -1,7 +1,7 @@
 package main.java.com.example.abstracts;
 
 
-public class MyClass implements  main.java.com.example.abstracts.A
+public class MyClass implements  A
 { //cannot find symbol(please examine)
 public  void methOne() {
   System.out.println("methOne is static and working");
