@@ -12,8 +12,8 @@ public enum Unit {
     
   },
   GRAM(100){
-    public Unit getBaseUnit(Unit unit){
-      return KILOGRAM.compareTo(GRAM) /;
+    public Unit getBaseUnit(){
+      return KILOGRAM ;
     }
 
   },SECOND(100){
@@ -26,7 +26,7 @@ public enum Unit {
       return this;
     }
     
-  }, KELVIN{
+  }, KELVIN(100){
     public Unit getBaseUnit(){
       return this;
     }

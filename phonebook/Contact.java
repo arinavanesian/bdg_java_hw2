@@ -8,6 +8,6 @@ public abstract class Contact {
   protected String phoneNumber;
   protected String companyNumber;
   protected String email;
-  protected add();
-  protected delete();
+  protected void  add(){};
+  protected  void delete(){};
 }
