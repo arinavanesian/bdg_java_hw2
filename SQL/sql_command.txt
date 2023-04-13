@@ -1,0 +1,37 @@
+1//
+SELECT AVG(cost) AS "Average"
+FROM bookings;
+2//
+SELECT COUNT(flight_number)
+from flight
+GROUP BY (origin);
+3//
+SELECT COUNT(flight_number)
+FROM flight
+GROUP BY destination;
+4//
+SELECT origin, COUNT(passenger_id) AS "Total passengers"
+FROM bookings
+INNER JOIN flight
+ON bookings.flight_number = flight.flight_number
+GROUP BY origin;
+5//
+SELECT origin, AVG(cost) AS "Average"
+FROM bookings
+INNER JOIN flight
+ON bookings.flight_number = flight.flight_number
+GROUP BY origin
+ORDER BY "Average" DESC;
+6//
+SELECT origin, COUNT(passenger_id) AS "Total passengers", AVG(cost) AS "AVerage"
+FROM bookings
+INNER JOIN flight
+ON bookings.flight_number = flight.flight_number 
+GROUP BY origin
+HAVING AVG(cost) <4800
+ORDER BY  "AVerage" DESC;
+7//
+SELECT SUM(cost)
+FROM bookings
+GROUP BY bookings_date
+HAVING bookings_date  BETWEEN '2022-02-10' AND '2022-03-11';

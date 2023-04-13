@@ -1,0 +1,50 @@
+SELECT employees.first_name, employees.emp_id 
+FROM employees
+WHERE employees.emp_id IN (
+SELECT works_with.emp_id
+FROM works_with
+WHERE total_sales > 50000
+);
+
+SELECT client_name 
+FROM client
+WHERE branch_id IN
+(SELECT branch_id 
+FROM employees
+WHERE first_name = 'Michael' AND last_name = 'Scott');
+
+
+SELECT employees.first_name, employees.emp_id
+FROM employees
+WHERE emp_id IN
+(SELECT emp_id
+ from works_with
+ WHERE client_id IN
+ (SELECT client_id
+ FROM client 
+  WHERE branch_id IN
+  ( SELECT branch_id 
+ FROM branch
+ WHERE branch_name = 'Scranton' 
+)
+ )
+);
+
+-- SELECT employees.first_name, employees.last_name
+-- FROM employees
+-- WHERE employees.emp_id IN (
+--                          SELECT works_with.emp_id
+--                          FROM works_with
+--                          )
+-- AND employees.branch_id = 2;
+
+SELECT client_name, 
+FROM client
+WHERE client_id IN
+(SELECT client_id 
+FROM 
+(SELECT SUM(total_sales) AS total
+FROM works_with
+GROUP BY client_id ) AS "total client sale"
+WHERE total > 100000);
+

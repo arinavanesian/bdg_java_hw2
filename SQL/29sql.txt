@@ -1,0 +1,164 @@
+1
+SELECT salesman.name AS "Salesman", customer.name, customer.city
+FROM salesman, customer
+WHERE salesman.city = customer.city;
+
+2
+
+SELECT customer.name, customer.city, customer.grade, salesman.name. salesman.city
+FROM customer 
+LEFT JOIN salesman
+ON customer.salesman_id = salesman.salesman_id
+ORDER BY salesman.salesman_id;
+
+3
+Return the customer and the salesman according to the customer
+SELECT customer_name, customer.city, salesman_name AS "Salesman", commission
+FROM customer, salesman
+WHERE customer.salesman_id = salesman.salesman_id; 
+//same result will be displayed by using INNER JOIN
+
+4
+SELECT customer.customer_name, city, salesman.salesman_name, commission
+FROM customer
+NATURAL JOIN salesman
+ON customer.salesman_id = salesman.salesman_id
+WHERE commission > 0.12;
+
+5
+SELECT salesman.salesman_name AS "Salesman", customer_name, customer.city, salesman.city
+FROM customer
+right JOIN salesman 
+ON customer.salesman_id = salesman.salesman_id
+WHERE salesman.city <> customer.city AND commission > 0.12;
+//same as
+SELECT salesman.salesman_name AS "Salesman", customer_name, customer.city, salesman.city
+FROM customer
+INNER JOIN salesman 
+ON customer.salesman_id = salesman.salesman_id
+WHERE salesman.city <> customer.city AND commission > 0.12;
+
+6
+SELECT orders_id, orders_date, purchase_amount, customer_name, salesman_name, commission
+FROM orders
+LEFT JOIN customer
+ON customer.customer_id = orders.customer_id
+INNER JOIN salesman
+ON salesman.salesman_id  =  orders.salesman_id;
+
+7
+//WHY DO I GET NO VALUES
+SELECT *
+FROM orders
+NATURAL JOIN customer
+NATURAL JOIN salesman;
+
+8
+SELECT customer.customer_name, customer.city, salesman.salesman_name, salesman.city
+FROM customer
+LEFT JOIN salesman
+ON customer.salesman_id = salesman.salesman_id
+ORDER BY customer_id
+
+9
+SELECT customer_name, customer.city, grade, salesman_name, salesman.city
+FROM customer
+INNER JOIN salesman
+ON customer.salesman_id = salesman.salesman_id
+WHERE grade < 60; 
+
+10
+SELECT orders_date, orders_id, orders.customer_id, city, customer_name
+FROM customer
+RIGHT JOIN orders
+ON orders.customer_id = customer.customer_id;
+
+11
+SELECT  customer_name, customer.customer_id, customer.salesman_id, customer.city orders_date, orders_id, purchase_amount,
+salesman_name, commission
+FROM customer
+LEFT JOIN orders
+ON customer.customer_id = orders.customer_id
+LEFT JOIN salesman
+ON salesman.salesman_id = orders.salesman_id;
+
+12
+SELECT COUNT(customer_id) AS "number of customers", salesman_name, customer.salesman_id
+FROM salesman, customer
+GROUP BY (customer_id, salesman_name, salesman.salesman_id)
+HAVING customer.salesman_id = salesman.salesman_id
+ORDER BY salesman_name; 	
+
+20
+//can null and city be compared as unequal
+SELECT *
+FROM salesman
+CROSS JOIN customer
+WHERE customer.city <> salesman.city AND salesman.city IS NOT NULL AND grade IS NOT NULL;
+
+
+21
+//FULL JOIN or INNER JOIN?
+SELECT * 
+FROM item_mast
+FULL JOIN company_mast
+ON company_mast.com_id = item_mast.pro_com;
+
+22
+SELECT pro_name, com_name, pro_price
+FROM item_mast
+LEFT JOIN company_mast
+ON item_mast.pro_com = company_mast.com_id;
+
+23
+SELECT com_name, AVG(pro_price)
+FROM item_mast, company_mast
+GROUP BY(company_name)
+HAVING com_id = pro_com;
+//USING GROUP BY WITH JOINS
+SELECT com_name, AVG(pro_price)
+FROM item_mast
+INNER JOIN company_mast
+ON com_id = pro_com
+GROUP BY(company_name);
+
+24
+SELECT com_name, AVG(pro_price) AS "AVERAGE"
+FROM item_mast
+INNER JOIN company_mast
+ON com_id = pro_com
+GROUP BY(company_name)
+HAVING AVG(pro_price)  > 350;
+
+25
+//how to write nested SELECT's
+SELECT com_name, pro_name, MAX(price) AS "Max price"
+FROM company_mast
+INNER JOIN item_mast
+ON com_id = pro_com AND
+pro_price = (SELECT MAX(pro_price)
+FROM item_mast
+WHERE pro_com = com_id);
+
+26
+SELECT emp_fname AS "First Name", emp_lname AS "Last Name",
+   dpt_name AS "Department", emp_dept, dpt_allotment
+FROM emp_details
+LEFT JOIN emp_department
+ON EMP_DEPT = DPT_CODE;
+
+28
+SELECT EMP_FNAME, EMP_LNAME, DPT_NAME, DPT_ALLOTMENT
+FROM emp_details
+INNER JOIN  emp_department
+ON DPT_CODE = EMP_DEPT
+wHERE DPT_ALLOTMENT > 50000;
+
+29
+SELECT emp_department.dpt_name
+  FROM emp_details 
+     INNER JOIN emp_department
+       ON emp_dept =dpt_code
+        GROUP BY emp_department.dpt_name
+          HAVING COUNT(*) > 2;
+
